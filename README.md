@@ -16,7 +16,7 @@ Basado en la tesis doctoral:
 
 ## Instalación y Ejecución
 
-### Opción 1: Local
+### Local
 ```bash
 # 1. Clonar repositorio
 git clone https://github.com/tu-usuario/prevendiabetes-upch.git
@@ -40,25 +40,11 @@ uvicorn main:app --reload
 http://127.0.0.1:8000
 ```
 
-### Opción 2: Deploy en Render (Recomendado - GRATIS)
-
-1. Sube el código a GitHub
-2. Ve a [render.com](https://render.com) y crea cuenta
-3. Crea nuevo "Web Service"
-4. Conecta tu repositorio de GitHub
-5. Configuración:
+### Render
+Configuración:
    - **Build Command**: `pip install -r requirements.txt && python data_simulator.py`
    - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
    - **Environment**: Python 3
-6. Deploy automático
-
-### Opción 3: Deploy en Railway
-
-1. Sube el código a GitHub
-2. Ve a [railway.app](https://railway.app) y crea cuenta
-3. "New Project" → "Deploy from GitHub repo"
-4. Selecciona tu repositorio
-5. Deploy automático
 
 ## Endpoints
 
