@@ -40,11 +40,13 @@ uvicorn main:app --reload
 http://127.0.0.1:8000
 ```
 
-### Render
-Configuración:
-   - **Build Command**: `pip install -r requirements.txt && python data_simulator.py`
-   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-   - **Environment**: Python 3
+Información del Deploy
+
+Plataforma: Railway
+URL: https://web-production-f1fc5.up.railway.app
+Estado: ✅ Activo
+Fecha de Deploy: 30 de diciembre de 2025
+Repositorio: https://github.com/satoCHINO-19/prevendiabetes-upch
 
 ## Endpoints
 
