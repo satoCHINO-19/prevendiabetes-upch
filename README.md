@@ -7,14 +7,14 @@ Sistema web de evaluación de riesgo de Diabetes Mellitus en universitarios, des
 - Generar data para investigación en salud pública
 - Ofrecer recomendaciones personalizadas basadas en evidencia
 
-## 🔬 Fundamentación Científica
+## Fundamentación Científica
 Basado en la tesis doctoral:  
 **"Modelo de prediagnóstico para identificación de DM aplicando Red de Creencias Profundas (DBN)"**  
 - INEI 2021: 69.7% diagnósticos tardíos en Perú
 - DBN alcanza 95.7% precisión en prediagnóstico
 - RD: causa #1 de ceguera prevenible
 
-## ⚙️ Instalación y Ejecución
+## Instalación y Ejecución
 
 ### Opción 1: Local
 ```bash
