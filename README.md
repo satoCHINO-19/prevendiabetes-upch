@@ -1,8 +1,8 @@
-# 🩺 PrevenDiabetes UPCH
+# PrevenDiabetes UPCH
 
 Sistema web de evaluación de riesgo de Diabetes Mellitus en universitarios, desarrollado como proyecto de **Responsabilidad Social Universitaria (RSU)** de UPCH.
 
-## 🎯 Objetivos
+## Objetivos
 - Sensibilizar sobre prevención de DM en población universitaria
 - Generar data para investigación en salud pública
 - Ofrecer recomendaciones personalizadas basadas en evidencia
@@ -60,20 +60,20 @@ http://127.0.0.1:8000
 4. Selecciona tu repositorio
 5. Deploy automático
 
-## 🌐 Endpoints
+## Endpoints
 
 - `/` - Encuesta interactiva
 - `/estadisticas` - Dashboard público
 - `/api/tendencias` - API REST para análisis
 
-## 💻 Tecnologías
+## Tecnologías
 
 - **Backend**: FastAPI + SQLAlchemy
 - **Frontend**: TailwindCSS
 - **Análisis**: Pandas + NumPy + Scikit-learn
 - **BD**: SQLite (dev) / PostgreSQL (prod)
 
-## 📊 Características
+## Características
 
 ✅ Encuesta validada de 24 ítems (escala Likert)  
 ✅ Análisis de tendencias comparativo  
@@ -82,12 +82,12 @@ http://127.0.0.1:8000
 ✅ Base de datos simulada con 200 registros  
 ✅ API REST para integración externa  
 
-## 🎓 Autor
+## Autor
 
 **Proyecto RSU - Universidad Peruana Cayetano Heredia**  
 Desarrollado para: Prof. Jaime Escobar Aguirre  
 Año: 2025
 
-## 📝 Licencia
+## Licencia
 
 Proyecto académico de Responsabilidad Social Universitaria
