@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estadísticas - PrevenDiabetes UPCH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <h1 class="text-3xl font-bold mb-6">📊 Estadísticas Generales del Proyecto</h1>
+        
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-blue-50 p-6 rounded-lg">
+                <p class="text-4xl font-bold text-blue-600">{{ stats.total }}</p>
+                <p class="text-gray-600">Encuestas completadas</p>
+            </div>
+            <div class="bg-green-50 p-6 rounded-lg">
+                <p class="text-4xl font-bold text-green-600">{{ stats.promedio }}</p>
+                <p class="text-gray-600">Puntaje promedio</p>
+            </div>
+            <div class="bg-yellow-50 p-6 rounded-lg">
+                <p class="text-4xl font-bold text-yellow-600">{{ stats.por_categoria.get('Riesgo Alto', 0) }}</p>
+                <p class="text-gray-600">Estudiantes en riesgo alto</p>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Distribución por Categoría</h2>
+            {% for cat, count in stats.por_categoria.items() %}
+            <div class="mb-2">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>{{ cat }}</span>
+                    <span>{{ count }} ({{ (count/stats.total*100)|round(1) }}%)</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                    <div class="bg-blue-500 h-4 rounded-full" style="width: {{ (count/stats.total*100)|round(1) }}%"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Promedio por Facultad</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                {% for fac, prom in stats.por_facultad.items() %}
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="font-semibold">{{ fac }}</p>
+                    <p class="text-2xl text-blue-600">{{ prom|round(1) }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <a href="/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+            ← Volver al inicio
+        </a>
+    </div>
+</body>
+</html>

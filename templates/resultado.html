@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Resultado - PrevenDiabetes UPCH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen p-6">
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-4" style="color: {{ color }};">{{ categoria }}</h1>
+            <div class="inline-block bg-{{ color }}-100 px-8 py-6 rounded-2xl">
+                <p class="text-6xl font-bold" style="color: {{ color }};">{{ puntaje }} / 96</p>
+                <p class="text-gray-600 mt-2">Puntaje Total</p>
+            </div>
+        </div>
+
+        <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-6 rounded-r-lg">
+            <h3 class="font-bold text-lg mb-3">📊 Análisis Comparativo</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div><p class="text-gray-700"><strong>Percentil:</strong> {{ tendencias.percentil }}%</p>
+                    <p class="text-gray-600 text-xs">Mejor que el {{ tendencias.percentil }}% de estudiantes similares</p></div>
+                <div><p class="text-gray-700"><strong>Promedio poblacional:</strong> {{ tendencias.promedio_poblacion }}/96</p>
+                    <p class="text-gray-600 text-xs">Basado en {{ tendencias.total_comparados }} encuestas</p></div>
+                <div><p class="text-gray-700"><strong>Tu facultad:</strong> {{ tendencias.comparacion_facultad }}</p></div>
+            </div>
+            
+            {% if tendencias.debilidades %}
+            <div class="mt-4 p-4 bg-orange-50 rounded-lg">
+                <p class="font-semibold text-orange-900">⚠️ Áreas de mejora:</p>
+                <ul class="list-disc list-inside text-orange-800 text-sm mt-2">
+                    {% for debilidad in tendencias.debilidades %}<li>{{ debilidad }}</li>{% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            {% if tendencias.fortalezas %}
+            <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                <p class="font-semibold text-green-900">✅ Tus fortalezas:</p>
+                <ul class="list-disc list-inside text-green-800 text-sm mt-2">
+                    {% for fortaleza in tendencias.fortalezas %}<li>{{ fortaleza }}</li>{% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-8">
+            <h3 class="font-bold text-lg mb-4">📈 Perfil por Dimensiones</h3>
+            <div class="space-y-3">
+                {% for dim_nombre, (puntaje_dim, maximo) in dimensiones.items() %}
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="font-medium">{{ dim_nombre }}</span>
+                        <span>{{ puntaje_dim }} / {{ maximo }}</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div class="bg-blue-500 h-4 rounded-full transition-all" style="width: {{ (puntaje_dim/maximo*100)|round }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg mb-6">
+            <h3 class="font-bold text-lg mb-4">💡 Recomendaciones Personalizadas</h3>
+            {% for rec in recomendaciones %}
+            <div class="bg-white p-4 rounded-lg mb-3 border-l-4 {% if rec.prioridad == 'URGENTE' %}border-red-500{% elif rec.prioridad == 'ALTA' %}border-orange-500{% else %}border-yellow-500{% endif %}">
+                <div class="flex items-start">
+                    <span class="px-2 py-1 text-xs font-bold rounded {% if rec.prioridad == 'URGENTE' %}bg-red-200 text-red-800{% elif rec.prioridad == 'ALTA' %}bg-orange-200 text-orange-800{% else %}bg-yellow-200 text-yellow-800{% endif %}">
+                        {{ rec.prioridad }}
+                    </span>
+                    <div class="ml-4 flex-1">
+                        <p class="font-semibold text-gray-900">{{ rec.accion }}</p>
+                        <p class="text-sm text-gray-700 mt-1">{{ rec.detalle }}</p>
+                        <p class="text-xs text-gray-500 mt-2">⏱️ <strong>Plazo:</strong> {{ rec.plazo }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="bg-yellow-50 p-6 rounded-lg mb-6">
+            <h3 class="font-bold text-lg mb-2">🔬 Sabías que...</h3>
+            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                <li>El modelo DBN alcanza <strong>95.7% de precisión</strong> en prediagnóstico de DM</li>
+                <li>30-80% de casos de diabetes NO están diagnosticados (OMS 2023)</li>
+                <li>150 min/semana de ejercicio reduce riesgo DM2 en 40%</li>
+            </ul>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4">
+            <a href="/" class="block text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                ← Nueva Encuesta
+            </a>
+            <a href="/estadisticas" class="block text-center bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700">
+                📊 Estadísticas
+            </a>
+            <button onclick="window.print()" class="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700">
+                🖨️ Imprimir
+            </button>
+        </div>
+    </div>
+</body>
+</html>
